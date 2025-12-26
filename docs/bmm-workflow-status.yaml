@@ -1,0 +1,85 @@
+# Workflow Status - Quick Flow com Discovery
+# Projeto: Negócio de adiantamento de valores de plantões médicos
+
+generated: "2025-12-10"
+project: "Negócio de adiantamento de valores de plantões médicos"
+project_type: "fintech-healthcare"
+selected_track: "quick-flow"
+field_type: "greenfield"
+workflow_path: "custom-quick-flow-with-discovery"
+
+workflow_status:
+  # Fase 0: Discovery (Opcional mas recomendado)
+  - phase: "0-discovery"
+    name: "Discovery e Planejamento Inicial"
+    workflows:
+      - id: "brainstorming"
+        name: "Sessão de Brainstorming"
+        description: "Exploração criativa de funcionalidades e abordagens"
+        status: "required"
+        agent: "analyst"
+        workflow: "/bmad:bmm:tasks:facilitate-brainstorming-session"
+
+      - id: "research"
+        name: "Pesquisa de Mercado e Técnica"
+        description: "Pesquisa sobre regulamentações, concorrentes, tecnologias"
+        status: "required"
+        agent: "analyst"
+        workflow: "/bmad:bmm:tasks:create-deep-research-prompt"
+
+      - id: "tech-spec"
+        name: "Especificação Técnica Rápida"
+        description: "Documento técnico simplificado para guiar desenvolvimento"
+        status: "recommended"
+        agent: "quick-flow-solo-dev"
+        workflow: "/bmad:bmm:workflows:bmad-quick-flow:create-tech-spec"
+
+  # Fase 1: Desenvolvimento Quick Flow
+  - phase: "1-quick-development"
+    name: "Desenvolvimento Rápido"
+    workflows:
+      - id: "quick-dev"
+        name: "Desenvolvimento Quick Flow"
+        description: "Desenvolvimento iterativo rápido com o agente quick-flow-solo-dev"
+        status: "required"
+        agent: "quick-flow-solo-dev"
+        workflow: "/bmad:bmm:workflows:bmad-quick-flow:quick-dev"
+
+# Próximos passos recomendados
+next_steps:
+  current_phase: "0-discovery"
+  current_step: "brainstorming"
+  recommendation: |
+    1. Comece com uma sessão de brainstorming para explorar:
+       - Funcionalidades principais do sistema
+       - Fluxos de usuário (médicos, clínicas, administradores)
+       - Integrações necessárias (bancos, hospitais, etc.)
+       - Considerações de segurança e compliance
+       - IMPORTANTE: Sistema de registro detalhado de plantões (datas específicas) visível para todos os portais
+
+    2. Depois faça research sobre:
+       - Regulamentações financeiras (Banco Central, etc.)
+       - Regulamentações de saúde (LGPD, dados médicos)
+       - Concorrentes no mercado
+       - Stack tecnológica recomendada
+
+    3. Crie uma especificação técnica rápida
+
+    4. Inicie o desenvolvimento com quick-flow-solo-dev
+
+# Comandos úteis
+commands:
+  check_status: "*workflow-status"
+  brainstorm: "Load analyst agent and run: /bmad:bmm:tasks:facilitate-brainstorming-session"
+  research: "Load analyst agent and run: /bmad:bmm:tasks:create-deep-research-prompt"
+  quick_dev: "Load quick-flow-solo-dev agent and start coding"
+# Notas importantes
+notes:
+  - "Sistema envolve transações financeiras - considere PCI-DSS"
+  - "Dados de saúde envolvidos - atenção à LGPD e HIPAA (se aplicável)"
+  - "Considere KYC/AML para compliance financeiro"
+  - "Quick Flow é rápido mas pode necessitar refatorações para produção"
+  - "CRÍTICO: Médico deve informar datas específicas dos plantões na solicitação"
+  - "CRÍTICO: Informações dos plantões (datas, local, horário) devem ser visíveis em TODOS os 3 portais (Médico, Empresa, Administrador)"
+  - "Sistema precisa rastrear cada plantão individualmente para auditoria e conciliação"
+  - "Quick Flow é rápido mas pode necessitar refatorações para produção"
