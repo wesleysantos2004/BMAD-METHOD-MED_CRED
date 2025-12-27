@@ -607,7 +607,11 @@
             };
 
             // Criar solicitação no storage
+            console.log('Criando solicitação com dados:', medicoData);
             const novaSolicitacao = AppStorage.criarSolicitacao(medicoData);
+            console.log('Solicitação criada:', novaSolicitacao);
+            console.log('Todas solicitações após criar:', AppStorage.getSolicitacoes());
+            console.log('Solicitações do médico:', AppStorage.getSolicitacoesMedico('medico1'));
 
             // Mostrar protocolo gerado
             document.getElementById('protocoloGerado').textContent = novaSolicitacao.numero;
