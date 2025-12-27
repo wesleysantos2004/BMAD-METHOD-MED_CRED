@@ -223,7 +223,9 @@
 
         // Carregar do storage
         function loadFromStorage() {
+            console.log('Carregando solicitações do médico medico1...');
             const solicitacoesStorage = AppStorage.getSolicitacoesMedico('medico1');
+            console.log('Solicitações encontradas:', solicitacoesStorage);
             return solicitacoesStorage.map(s => ({
                 id: s.id,
                 numero: s.numero,
@@ -231,7 +233,8 @@
                 valorTotal: s.valorTotal,
                 valorLiquido: s.valorLiquido,
                 status: s.status,
-                dataSolicitacao: s.dataCriacao
+                dataSolicitacao: s.dataCriacao,
+                plantoes: s.plantoes ? s.plantoes.length : 0
             }));
         }
 
@@ -297,12 +300,16 @@
 
         // Load solicitações
         function loadSolicitacoes() {
+            console.log('=== Iniciando loadSolicitacoes ===');
             // Tentar carregar do storage primeiro
             const storageSolicitacoes = loadFromStorage();
+            console.log('Resultado de loadFromStorage:', storageSolicitacoes);
 
             if (storageSolicitacoes.length > 0) {
+                console.log('Usando dados do storage');
                 todasSolicitacoes = storageSolicitacoes;
             } else {
+                console.log('Storage vazio, usando mock data');
                 // Se não houver no storage, usar mock
                 todasSolicitacoes = [
                     {

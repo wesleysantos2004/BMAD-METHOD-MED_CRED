@@ -115,6 +115,12 @@ const AppStorage = {
     return solicitacoes.find((s) => s.id === id || s.numero === id);
   },
 
+  // Obter solicitações de um médico específico
+  getSolicitacoesMedico(medicoId) {
+    const solicitacoes = this.getSolicitacoes();
+    return solicitacoes.filter((s) => s.medicoId === medicoId);
+  },
+
   // Salvar solicitações
   saveSolicitacoes(solicitacoes) {
     localStorage.setItem("solicitacoes", JSON.stringify(solicitacoes));
